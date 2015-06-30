@@ -59,8 +59,41 @@ public final class MongoDBPartService implements PartService {
     private PartDTO convertToDTO(Part model) {
         PartDTO dto = new PartDTO();
         dto.setId(model.getId());
+        dto.setApplications(model.getApplications());
+        dto.setCapacitance(model.getCapacitance());
+        dto.setCapacitorType(model.getCapacitorType());
+        dto.setComposition(model.getComposition());
+        dto.setCorporatePartNumber(model.getCorporatePartNumber());
+        dto.setCurrent(model.getCurrent());
+        dto.setDatasheets(model.getDatasheets());
         dto.setDescription(model.getDescription());
-
+        dto.setFeatures(model.getFeatures());
+        dto.setHeightSeated(model.getHeightSeated());
+        dto.setImage(model.getImage());
+        dto.setImpedance(model.getImpedance());
+        dto.setLifetimeTemp(model.getLifetimeTemp());
+        dto.setManufacturer(model.getManufacturer());
+        dto.setManufacturerPartNumber(model.getManufacturerPartNumber());
+        dto.setMountingType(model.getMountingType());
+        dto.setOperatingTemperature(model.getOperatingTemperature());
+        dto.setPackageCase(model.getPackageCase());
+        dto.setPackaging(model.getPackaging());
+        dto.setPower(model.getPower());
+        dto.setPowerMax(model.getPowerMax());
+        dto.setResistance(model.getResistance());
+        dto.setRippleCurrent(model.getRippleCurrent());
+        dto.setSeries(model.getSeries());
+        dto.setSizeDimension(model.getSizeDimension());
+        dto.setSupplierDevicePackage(model.getSupplierDevicePackage());
+        dto.setSurfaceMountLandSize(model.getSurfaceMountLandSize());
+        dto.setTemperatureCoefficient(model.getTemperatureCoefficient());
+        dto.setTolerance(model.getTolerance());
+        dto.setType(model.getType());
+        dto.setUnitPrice(model.getUnitPrice());
+        dto.setVoltage(model.getVoltage());
+        dto.setVoltageRating(model.getVoltageRating());
+        dto.setVoltageZener(model.getVoltageZener());
+        
         return dto;
     }
 }

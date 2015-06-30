@@ -335,10 +335,19 @@ public final class PartDTO {
 	}
 
 	@Override
-    public String toString() {
-        return String.format(
-                "PartDTO[id=%s]",
-                this.id
-        );
-    }
+	public String toString() {
+		return "PartDTO [id=" + id + ", datasheets=" + datasheets + ", image=" + image + ", corporatePartNumber="
+				+ corporatePartNumber + ", manufacturerPartNumber=" + manufacturerPartNumber + ", manufacturer="
+				+ manufacturer + ", description=" + description + ", unitPrice=" + unitPrice + ", packaging="
+				+ packaging + ", tolerance=" + tolerance + ", type=" + type + ", series=" + series
+				+ ", operatingTemperature=" + operatingTemperature + ", sizeDimension=" + sizeDimension
+				+ ", mountingType=" + mountingType + ", packageCase=" + packageCase + ", capacitance=" + capacitance
+				+ ", voltageRating=" + voltageRating + ", lifetimeTemp=" + lifetimeTemp + ", capacitorType="
+				+ capacitorType + ", applications=" + applications + ", rippleCurrent=" + rippleCurrent + ", impedance="
+				+ impedance + ", heightSeated=" + heightSeated + ", surfaceMountLandSize=" + surfaceMountLandSize
+				+ ", voltageZener=" + voltageZener + ", powerMax=" + powerMax + ", current=" + current + ", voltage="
+				+ voltage + ", supplierDevicePackage=" + supplierDevicePackage + ", resistance=" + resistance
+				+ ", power=" + power + ", composition=" + composition + ", features=" + features
+				+ ", temperatureCoefficient=" + temperatureCoefficient + "]";
+	}
 }
