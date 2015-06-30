@@ -1,8 +1,5 @@
 package com.java.error;
 
-/**
- * @author Petri Kainulainen
- */
 public final class FieldErrorDTO {
 
     private final String field;

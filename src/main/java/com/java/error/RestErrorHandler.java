@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * @author Petri Kainulainen
- */
 @ControllerAdvice
 public final class RestErrorHandler {
 
