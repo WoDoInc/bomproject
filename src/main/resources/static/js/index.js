@@ -1,12 +1,10 @@
-angular.module('main', [ 'ngRoute', 'billofmaterials', 'part', 'navigation' ])
-	.config(
-		function($routeProvider, $httpProvider, $locationProvider) {
-
+angular.module('main', [ 'ngRoute', 'addbillofmaterials', 'billofmaterials', 'part', 'navigation' ])
+	.config(function($routeProvider, $httpProvider, $locationProvider) {
 			$locationProvider.html5Mode(true);
 
-			$routeProvider.when('/', {
-				templateUrl : 'js/bom/billofmaterials.html',
-				controller : 'billofmaterials'})
+			$routeProvider.when('/addbillofmaterials', {
+				templateUrl : 'js/bom/addbillofmaterials.html',
+				controller : 'addbillofmaterials'})
 			.when('/billofmaterials', {
 				templateUrl : 'js/bom/billofmaterials.html',
 				controller : 'billofmaterials'})

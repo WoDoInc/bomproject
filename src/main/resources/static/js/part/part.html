@@ -1,5 +1,6 @@
-<h1>Parts Master Table</h1>
+<h1>Parts</h1>
 <div>
+    <p> Search: <input ng-model="search"></p>
     <table class="table table-striped" cellspacing="0" cellpadding="0">
 	    <tbody>
 	       <tr>
@@ -7,7 +8,7 @@
 	           <th scope="col" title="Type">Type</th>
 	           <th scope="col" title="Description">Description</th>
 	       </tr>
-	       <tr ng-repeat="part in parts">
+	       <tr ng-repeat="part in parts | orderBy:'corporatePartNumber' | filter:search">
 	           <!--td ng-repeat="field in part"-->
 	           <td>{{part.corporatePartNumber}}</td>
 	           <td>{{part.type}}</td>
