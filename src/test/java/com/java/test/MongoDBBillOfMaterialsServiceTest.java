@@ -2,36 +2,59 @@ package com.java.test;
 
 import static com.java.test.BillOfMaterialsAssert.assertThatBillOfMaterials;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.Matchers.isA;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.lang.reflect.Method;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import org.bson.types.ObjectId;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.http.MediaType;
 import org.springframework.test.util.ReflectionTestUtils;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.method.annotation.ExceptionHandlerMethodResolver;
+import org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver;
+import org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod;
 
 import com.java.error.NotFoundException;
+import com.java.error.RestErrorHandler;
 import com.java.rest.BillOfMaterials;
+import com.java.rest.BillOfMaterialsController;
 import com.java.rest.BillOfMaterialsDTO;
 import com.java.rest.BillOfMaterialsRepository;
+import com.java.rest.BillOfMaterialsService;
 import com.java.rest.MongoDBBillOfMaterialsService;
 import com.java.rest.Part;
 import com.java.rest.PartsList;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MongoDBBillOfMaterialsServiceTest {
-
     private static final String ID = "id";
     private static final String DESCRIPTION = "description";
     private static final String UPDATED_DESCRIPTION = "updated description";
@@ -39,9 +62,6 @@ public class MongoDBBillOfMaterialsServiceTest {
     private static final PartsList LIST = new PartsList();
     private static final Part PART = new Part();
     static {
-    	PART.setId("ZZZ");
-    	PART.setType("Capacitor");
-    	PART.setCapacitance("10µF");
     	LIST.setCount(1L);
     	LIST.setPart(PART);
     	PARTS.add(LIST);

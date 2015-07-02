@@ -46,7 +46,6 @@ import com.java.rest.PartsList;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BillOfMaterialsControllerTest {
-
     private static final MediaType APPLICATION_JSON_UTF8 = new MediaType(MediaType.APPLICATION_JSON.getType(),
             MediaType.APPLICATION_JSON.getSubtype(),
             Charset.forName("utf8")
@@ -59,9 +58,6 @@ public class BillOfMaterialsControllerTest {
     private static final PartsList LIST = new PartsList();
     private static final Part PART = new Part();
     static {
-    	PART.setId("ZZZ");
-    	PART.setType("Capacitor");
-    	PART.setCapacitance("10µF");
     	LIST.setCount(1L);
     	LIST.setPart(PART);
     	PARTS.add(LIST);

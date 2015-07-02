@@ -2,8 +2,6 @@ package com.java.test;
 
 import static com.java.test.PartsListAssert.assertThatPartsList;
 
-import java.util.ArrayList;
-
 import org.junit.Test;
 
 import com.java.rest.Part;
@@ -13,11 +11,6 @@ public class PartsListTest {
 
     private static final Long COUNT = 42L;
     private static final Part PART = new Part();
-    static {
-    	PART.setId("ZZZ");
-    	PART.setType("Capacitor");
-    	PART.setCapacitance("10µF");
-    }
 
     @Test(expected = NullPointerException.class)
     public void build_CountIsNull_ShouldThrowException() {
@@ -43,7 +36,6 @@ public class PartsListTest {
                 .build();
 
         assertThatPartsList(build)
-                .hasNoId()
                 .hasCount(COUNT)
                 .hasPart(PART);
     }

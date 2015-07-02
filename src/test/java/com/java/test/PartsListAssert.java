@@ -17,31 +17,6 @@ class PartsListAssert extends AbstractAssert<PartsListAssert, PartsList> {
         return new PartsListAssert(actual);
     }
 
-    PartsListAssert hasId(String expectedId) {
-        isNotNull();
-
-        String actualId = actual.getId();
-        assertThat(actualId)
-                .overridingErrorMessage("Expected id to be <%s> but was <%s>",
-                        expectedId,
-                        actualId
-                )
-                .isEqualTo(expectedId);
-
-        return this;
-    }
-
-    PartsListAssert hasNoId() {
-        isNotNull();
-
-        String actualId = actual.getId();
-        assertThat(actualId)
-                .overridingErrorMessage("Expected id to be <null> but was <%s>", actualId)
-                .isNull();
-
-        return this;
-    }
-    
     PartsListAssert hasCount(Long expectedCount) {
         isNotNull();
 
@@ -67,16 +42,16 @@ class PartsListAssert extends AbstractAssert<PartsListAssert, PartsList> {
         return this;
     }
     
-    PartsListAssert hasPart(Part expectedPart) {
+    PartsListAssert hasPart(Part part) {
         isNotNull();
 
         Part actualPart = actual.getPart();
         assertThat(actualPart)
                 .overridingErrorMessage("Expected parts to be <%s> but was <%s>",
-                		expectedPart,
+                		part,
                 		actualPart
                 )
-                .isEqualTo(expectedPart);
+                .isEqualTo(part);
 
         return this;
     }

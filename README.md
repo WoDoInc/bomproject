@@ -16,11 +16,11 @@ To use live data, create a mongodb instance (the default 'test' database will su
     mongoimport -d test -c part --type csv --file Diodes.csv --headerline
     mongoimport -d test -c part --type csv --file Resistors.csv --headerline
 
-Why MongoDB? The project database of choice uses a noSQL schema to serve up versioned documents. Unlike a traditional database, where joins would be needed between BillsOfMaterials and Parts (pending Parts was not split into three categorical tables as in the CSVs - capacitors, diodes, resistors), we can consolidate the information into an easily accessible collection as a lookup. Also, the schema can evolve quite rapidly, allowing us to extend our database as new information is needed.
+Why MongoDB? The project database of choice uses a noSQL schema to serve up versioned documents. Unlike a traditional database, where joins would be needed between BillsOfMaterials and Parts (pending Parts was not split into three categorical tables as in the CSVs - capacitors, diodes, resistors), we can consolidate the information into an easily accessible collection via embedding. Also, the schema can evolve quite rapidly, allowing us to extend our database as new information is needed.
 
-Two options are available at this point, either simply embedding the collection within the bill of materials object, as seen below, or going one step further and doing the join on the client-side. Basically, off-loading the join on the client distributes an expensive join from the server to the client - which is great if there are say, millions of clients using this API and if more data joining was needed.
+Should a part change (say one of the parameters change, the part number is the same, but the size is smaller due to better manufacturing), the original part allocated in previous bills will be preserved.
 
-In the end, we have a well-scaling, flexible database. AngularJS would be a great additional example for the client-side view and controller (and user contexts tied to Spring Security), plus the Twitter Bootstrap for styling, but I was not able to finish that portion of the project in time.
+In the end, we have a well-scaling, flexible database. A simple AngularJS front-end leverages the API for viewing the bills of materials and the master list of parts. The next steps would be to implement the creation, addition, update, and deletion features for the respective bill of materials.
 
 The Restful API uses JSON as the structure for the data, with POJOs as the intermediary objects and DTOs.
 
@@ -30,7 +30,11 @@ The bill of materials data is structured as follows. id is the guaranteed unique
     "description": "A Description",
     "partslist": [{
         "count": "42",
-        "part": ObjectId("3f56309f7625576ade5a1500")
+        "part": "..."
+    },
+    {
+        "count": "2",
+        "part": "..."    
     }]
 }
 
@@ -51,9 +55,14 @@ The API can be accessed on http://localhost:8080
 Your restful client of choice should work, or curl if you prefer a CLI.
 
     curl -v http://localhost:8080/billofmaterials
-    curl -v -H "Accept: application/json" -X POST -d {"description":"a descrption","parts":[{"count":"42","part":"..."}]} http://localhost:8080/api/billofmaterials
+    curl -v -H "Content-Type: application/json" -X POST -d {"description":"a description","parts":[{"count":"42","part":"..."},{"count":"23","part":"..."}]} http://localhost:8080/api/billofmaterials
 
 Objects and collections can also be referenced within the database via mongo's command line interface.
+
+    db.billOfMaterials.find()
+    
+    >{ "_id" : ObjectId("559492d9e4b0f8ca48496c4d"), "_class" : "com.java.rest.BillOfMaterials", "description" : "test", "parts" : [{ "count" : "42", "part" : "..." }] }
+
 
     db.part.find({ "_id":ObjectId("5591db46301fb0df082fc6e4")})
     

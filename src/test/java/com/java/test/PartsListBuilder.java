@@ -2,8 +2,8 @@ package com.java.test;
 
 import org.springframework.test.util.ReflectionTestUtils;
 
-import com.java.rest.PartsList;
 import com.java.rest.Part;
+import com.java.rest.PartsList;
 
 public class PartsListBuilder {
     private String id;

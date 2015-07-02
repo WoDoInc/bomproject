@@ -3,15 +3,8 @@ package com.java.rest;
 import static com.java.util.PreCondition.isTrue;
 import static com.java.util.PreCondition.notNull;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-
 public class PartsList {
-	@Id
-	private String id;
 	private Long count;
-	
-	@DBRef
 	private Part part;
 	
 	public PartsList() {}
@@ -24,14 +17,6 @@ public class PartsList {
 	public static Builder getBuilder() {
         return new Builder();
     }
-	
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public Long getCount() {
 		return count;
@@ -60,8 +45,7 @@ public class PartsList {
 	@Override
     public String toString() {
         return String.format(
-                "PartsList[id=%s, count=%s, part=%s]",
-                this.id,
+                "PartsList[count=%s, part=%s]",
                 this.count,
                 this.part
         );

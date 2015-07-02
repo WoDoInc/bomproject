@@ -34,6 +34,7 @@ public final class MongoDBBillOfMaterialsService implements BillOfMaterialsServi
 
         BillOfMaterials persisted = BillOfMaterials.getBuilder()
                 .description(billOfMaterials.getDescription())
+                .parts(billOfMaterials.getParts())
                 .build();
 
         persisted = repository.save(persisted);
@@ -106,6 +107,7 @@ public final class MongoDBBillOfMaterialsService implements BillOfMaterialsServi
 
         dto.setId(model.getId());
         dto.setDescription(model.getDescription());
+        dto.setParts(model.getParts());
 
         return dto;
     }

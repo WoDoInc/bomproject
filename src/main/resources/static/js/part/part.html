@@ -1,0 +1,18 @@
+<h1>Parts Master Table</h1>
+<div>
+    <table class="table table-striped" cellspacing="0" cellpadding="0">
+	    <tbody>
+	       <tr>
+	           <th scope="col" title="Corporate Part Number">Corporate Part Number</th>
+	           <th scope="col" title="Type">Type</th>
+	           <th scope="col" title="Description">Description</th>
+	       </tr>
+	       <tr ng-repeat="part in parts">
+	           <!--td ng-repeat="field in part"-->
+	           <td>{{part.corporatePartNumber}}</td>
+	           <td>{{part.type}}</td>
+	           <td>{{part.description}}</td>
+	       </tr>
+	    </tbody>
+    </table>
+</div>
