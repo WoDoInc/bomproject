@@ -14,7 +14,8 @@
                <th scope="col" title="Image">Image</th>
            </tr>
            <tr ng-repeat="part in bom.parts | orderBy:'corporatePartNumber'">
-               <td><input name="part.count" ng-model="part.count" required></td>
+               <td><input name="part.count" ng-model="part.count" ng-required class="input-mini"></td>
+               <td>{{part.part.corporatePartNumber}}</td>
                <td>{{part.part.type}}</td>
                <td>{{part.part.description}}</td>
                <td><img ng-src="{{part.part.image}}" alt="{{part.part.manufacturerPartNumber}}" height="32" width="32"/></td>
