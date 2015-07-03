@@ -19,6 +19,7 @@
                <td>{{part.part.type}}</td>
                <td>{{part.part.description}}</td>
                <td><img ng-src="{{part.part.image}}" alt="{{part.part.manufacturerPartNumber}}" height="32" width="32"/></td>
+               <td>[<a href="" ng-click="removeItem($index)" class="btn btn-small">X</a>]</td>
            </tr>
         </tbody>
     </table>

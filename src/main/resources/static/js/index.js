@@ -85,6 +85,10 @@ angular.module('main', ['ngRoute'])
 		$scope.bom.parts.push(part);
 	}
 	
+	$scope.removeItem = function(index) {
+		$scope.bom.parts.splice(index, 1);
+	}
+	
 	partService.getPartsList().success(function(data) {
 		$scope.parts = data;
 	});
