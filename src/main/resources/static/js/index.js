@@ -73,7 +73,7 @@ angular.module('main', ['ngRoute'])
 		});
 	}
 })
-.controller('newBOMController', function($scope, $http, $routeParams, partService, newBOMService) {
+.controller('newBOMController', function($scope, $http, $location, $routeParams, partService, newBOMService) {
 	$scope.bom = newBOMService;
 	$scope.bom.description = "A default description.";
 	
@@ -96,6 +96,6 @@ angular.module('main', ['ngRoute'])
 	}
 	
 	$scope.submit = function() {
-		$http.post(URLS.getBOMList, $scope.bom);
+		$http.post(URLS.getBOMList, $scope.bom).success(function(data) {$location.path('/bom')});
 	}
 });

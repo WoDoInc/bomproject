@@ -1,0 +1,23 @@
+<h1>Bills of Materials</h1>
+<div>
+    <table class="table table-striped" cellspacing="0" cellpadding="0">
+        <tr>
+           <th scope="col" title="BOM ID">BOM ID</th>
+           <th scope="col" title="Description">Description</th>
+        </tr>
+        <tr>
+           <td>BOM{{bomdetails.id}}</td>
+           <td>{{bomdetails.description}}</td>
+        </tr>
+        <tr>
+            <th scope="col" title="Count">Count</th>
+            <th scope="col" title="Part">Part</th>
+        </tr>
+        <tbody ng-repeat="part in bomdetails.parts">
+           <tr>
+               <td>{{part.count}}</td>
+               <td>{{part.part}}</td>
+           </tr>
+        </tbody>
+    </table>
+</div>
