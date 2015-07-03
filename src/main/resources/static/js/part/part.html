@@ -7,12 +7,14 @@
 	           <th scope="col" title="Corporate Part Number">Corporate Part Number</th>
 	           <th scope="col" title="Type">Type</th>
 	           <th scope="col" title="Description">Description</th>
+	           <th scope="col" title="Image">Description</th>
 	       </tr>
 	       <tr ng-repeat="part in parts | orderBy:'corporatePartNumber' | filter:search">
 	           <!--td ng-repeat="field in part"-->
-	           <td>{{part.corporatePartNumber}}</td>
+	           <td><a href="#/part/{{part.id}}">{{part.corporatePartNumber}}</a></td>
 	           <td>{{part.type}}</td>
 	           <td>{{part.description}}</td>
+	           <td><img ng-src="{{part.image}}" alt="{{part.description}}" height="32" width="32"/></td>
 	       </tr>
 	    </tbody>
     </table>

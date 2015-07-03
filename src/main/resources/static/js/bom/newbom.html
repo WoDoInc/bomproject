@@ -1,0 +1,49 @@
+<div>
+<br/>
+<p>New Bill of Materials</p>
+<form ng-controller="newBOMController" ng-submit="submit()">
+    <p>Description: <input name="bom.description" ng-model="bom.description" required></p>
+    <p>Parts:</p>
+    <table class="table table-striped" cellspacing="0" cellpadding="0">
+        <tbody>
+           <tr>
+               <th scope="col" title="Count">Count</th>
+               <th scope="col" title="Corporate Part Number">Corporate Part Number</th>
+               <th scope="col" title="Type">Type</th>
+               <th scope="col" title="Description">Description</th>
+               <th scope="col" title="Image">Image</th>
+           </tr>
+           <tr ng-repeat="part in bom.parts | orderBy:'corporatePartNumber'">
+               <td><input name="part.count" ng-model="part.count" required></td>
+               <td>{{part.part.type}}</td>
+               <td>{{part.part.description}}</td>
+               <td><img ng-src="{{part.part.image}}" alt="{{part.part.manufacturerPartNumber}}" height="32" width="32"/></td>
+           </tr>
+        </tbody>
+    </table>
+    <input type="submit" id="submit" value="Submit"/>
+</form>
+<br/>
+<p>Parts Lookup</p>
+<p>Search: <input ng-model="search"></p>
+<table class="table table-striped table-condensed table-hover" cellspacing="0" cellpadding="0">
+	<thead>
+	   <tr>
+           <th scope="col" title="Corporate Part Number">Corporate Part Number</th>
+           <th scope="col" title="Type">Type</th>
+           <th scope="col" title="Description">Description</th>
+           <th scope="col" title="Image">Image</th>
+           <th scope="col" title="Add Part?">Add?</th>
+       </tr>
+	</thead>
+    <tbody>
+       <tr ng-repeat="part in parts | orderBy:'corporatePartNumber' | filter:search">
+           <td>{{part.corporatePartNumber}}</td>
+           <td>{{part.type}}</td>
+           <td>{{part.description}}</td>
+           <td><img ng-src="{{part.image}}" alt="{{part.manufacturerPartNumber}}" height="32" width="32"/></td>
+           <td class="tdCenter"><a href="" ng-click="addItem('1', part)">Add Item</a></td>
+       </tr>
+    </tbody>
+</table>
+</div>
